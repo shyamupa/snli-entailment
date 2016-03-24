@@ -1,5 +1,7 @@
 Implementation of a attention model for entailment (for fun with keras) from [this paper](http://arxiv.org/abs/1509.06664).
-The code is research quality -- which means there is no quality. It works, but somewhat poorly than the numbers in the paper.
+The code is research quality -- which means there are no guarantees!
+
+It works, but somewhat poorly than the numbers in the paper.
 
 To train,
 
