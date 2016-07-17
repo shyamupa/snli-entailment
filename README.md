@@ -1,4 +1,7 @@
 Implementation of a attention model for entailment (for fun with keras) from [this paper](http://arxiv.org/abs/1509.06664).
+
+**UPDATE**: The code has been migrated to functional api.
+
 The code is research quality -- which means there are no guarantees!
 
 It works, but somewhat poorly than the numbers in the paper.
