@@ -36,6 +36,9 @@ def get_params():
     parser.add_argument('-lr', action="store", default=0.001, dest="lr", type=float)
     parser.add_argument('-load', action="store", default=False, dest="load_save", type=bool)
     parser.add_argument('-verbose', action="store", default=False, dest="verbose", type=bool)
+    parser.add_argument('-train', action="store", default="train_all.txt", dest="train")
+    parser.add_argument('-test', action="store", default="test_all.txt", dest="test")
+    parser.add_argument('-dev', action="store", default="dev.txt", dest="dev")
     opts = parser.parse_args(sys.argv[1:])
     print "lstm_units", opts.lstm_units
     print "epochs", opts.epochs
@@ -197,15 +200,15 @@ def setup_logger(config_str):
 
 
 if __name__ == "__main__":
-    train=[l.strip().split('\t') for l in open('train.txt')]
-    dev=[l.strip().split('\t') for l in open('dev.txt')]
-    test=[l.strip().split('\t') for l in open('test.txt')]
-    vocab=get_vocab(train)
+    options = get_params()
+    train = [l.strip().split('\t') for l in open(options.train)]
+    dev = [l.strip().split('\t') for l in open(options.dev)]
+    test = [l.strip().split('\t') for l in open(options.test)]
+    vocab = get_vocab(train)
     print "vocab (incr. maxfeatures accordingly):",len(vocab)
     X_train,Y_train,Z_train=load_data(train,vocab)
     X_dev,Y_dev,Z_dev=load_data(dev,vocab)
     X_test,Y_test,Z_test=load_data(test,vocab)
-    options = get_params()
     print 'Build model...'
     model = build_model(options)
 

@@ -1,18 +1,21 @@
-Implementation of a attention model for entailment (for fun with keras) from [this paper](http://arxiv.org/abs/1509.06664).
-
-**UPDATE**: The code has been migrated to functional api. Works with Keras 1.0.6
-
-The code is research quality -- which means there are no guarantees!
-
-It works, but somewhat poorly than the numbers in the paper.
+Implementations of a attention model for entailment from [this paper](http://arxiv.org/abs/1509.06664) in keras and tensorflow. Compatible with keras v1.0.6 and tensorflow 0.11.0rc2
+I implemented the model to learn the APIs for keras and tensorflow, so I have not really tuned on the performance. The models implemented in keras is a little different, as keras does not expose a method to set a LSTMs state.
 
 To train,
 
 * Download [snli dataset](http://nlp.stanford.edu/projects/snli/).
 * Create train, dev, test files with tab separated text, hypothesis and label (example file train10.txt). You can find some snippet in `reader.py` for this, if you are lazy.
-* Train!
+* Train by either running,
 
-You should be able to get >70% test and dev accuracy (I did no tuning).
+```
+python amodel.py -train <TRAIN> -dev <DEV> -test <TEST>
+```
+for using the tensorflow implementation, or 
+```
+python tf_model.py -train <TRAIN> -dev <DEV> -test <TEST>
+```
+for using the keras implementation. Look at the `get_params()` method in both scripts to see how to specify different parameters.
+
 
 Log is written out in *.log file with callback for accuracy.
 
